@@ -1,0 +1,16 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>Create a Custom Workout Program</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+
+        <ion-item *ngFor="let workoutDay of workoutDays">
+            <ion-toggle [(ngModel)]="workoutDay.active"></ion-toggle>
+            <ion-label>{{workoutDay.day}}<div *ngIf="workoutDay.active">Exercises: {{workoutDay.workout.length}}</div></ion-label>
+            <button [disabled]="!workoutDay.active" ion-button item-left color="secondary" (click)="onEditWorkoutClicked(workoutDay)">Edit Workout</button>
+        </ion-item>
+    </ion-list>
+</ion-content>

@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>Edit {{day}} Workout</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-searchbar [(ngModel)]="queryText" (ionInput)="filterItems()" (ionClear)="cancelSearch()"></ion-searchbar>
+    <div *ngIf="queryText.length">
+        <ion-card class="fixed-card">
+            <ion-list>
+                <button ion-item *ngFor="let exercise of exercises; let flag = even;" [ngClass]="{'stripe': flag }">
+                        {{exercise.name}}
+                        <ion-icon name="add" color="secondary" item-right></ion-icon>
+                    </button>
+                <ion-item *ngIf="exercises.length == 0"> No search results found.</ion-item>
+            </ion-list>
+        </ion-card>
+    </div>
+    <div>
+        Im a wanker
+    </div>
+</ion-content>

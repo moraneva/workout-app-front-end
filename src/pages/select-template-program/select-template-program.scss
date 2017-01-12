@@ -1,0 +1,24 @@
+page-select-template-program {
+  ion-icon {
+    font-size: 125px;
+  }
+
+  ion-row {
+    height: 100%;
+    flex-wrap: wrap;
+  }
+
+  ion-card {
+    text-align: center;
+    padding: 10px 10px;
+  }
+
+  ion-card-title{
+      font-weight: bold;
+  } 
+
+  .content-text div {
+      font-size: 1.25em;
+      padding: 15px 20px;
+  }
+}

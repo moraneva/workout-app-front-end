@@ -1,0 +1,27 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>Select Workout Program</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div class="content-text">
+        <div>Welcome to the app! Since you are a first time user, 
+            choose to create your own workout program or select 
+            a template that suites your fitness goals. </div>
+    </div>
+    <ion-row>
+        <ion-card (click)="onCustomCreateClicked()">
+            <ion-icon name="add" color="secondary"></ion-icon>
+            <ion-card-title>
+                Create a custom workout program
+            </ion-card-title>
+        </ion-card>
+        <ion-card (click)="onSelectTemplateClicked()">
+            <ion-icon name="list-box" color="secondary"></ion-icon>
+            <ion-card-title>
+                Select from a list of template programs
+            </ion-card-title>
+        </ion-card>
+    </ion-row>
+</ion-content>
