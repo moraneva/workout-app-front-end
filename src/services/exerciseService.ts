@@ -7,14 +7,15 @@ export class ExerciseService {
 
     data: Exercise[];
 
-    getExercises(query = "") {
+    getExercises(query = "", filter: Exercise[] = []) {
         if (!this.data) {
             this.data = EXERCISES;
         }
 
         let queriedData = this.data.filter((exercise)=>{
-            return exercise.name.toLowerCase().includes(query.toLowerCase());
+            return exercise.name.toLowerCase().includes(query.toLowerCase()) && filter.indexOf(exercise) == -1;
         });
-        return Promise.resolve(queriedData); // takes values from country.contacts typescript file
+
+        return Promise.resolve(queriedData); 
     }
 }

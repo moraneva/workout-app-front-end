@@ -9,15 +9,17 @@
     <div *ngIf="queryText.length">
         <ion-card class="fixed-card">
             <ion-list>
-                <button ion-item *ngFor="let exercise of exercises; let flag = even;" [ngClass]="{'stripe': flag }">
+                <button ion-item *ngFor="let exercise of exercises; let flag = even;" [ngClass]="{'stripe': flag }" (click)="onAddExercise(exercise)">
                         {{exercise.name}}
                         <ion-icon name="add" color="secondary" item-right></ion-icon>
-                    </button>
+                </button>
                 <ion-item *ngIf="exercises.length == 0"> No search results found.</ion-item>
             </ion-list>
         </ion-card>
     </div>
-    <div>
-        Im a wanker
-    </div>
+    <ion-list>
+        <ion-item *ngFor="let exercise of workout; let i = index;">
+            {{i+1}}. {{exercise.name}}
+        </ion-item>
+    </ion-list>
 </ion-content>

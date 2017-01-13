@@ -10,12 +10,14 @@ import { ExerciseService } from '../../services/exerciseService';
 export class EditWorkoutPage implements OnInit {
 
   workout;
+  day: string;
   exercises: Exercise[];
   queryText = "";
 
   constructor(public navParams: NavParams, public events: Events, private _exerciseService: ExerciseService) {
 
     this.workout = this.navParams.get('workout');
+    this.day = this.navParams.get('day');
     this.exercises = [];
   }
 
@@ -25,7 +27,7 @@ export class EditWorkoutPage implements OnInit {
 
   filterItems() {
     if (this.queryText.length) {
-      this._exerciseService.getExercises(this.queryText).then(exercises => {
+      this._exerciseService.getExercises(this.queryText,this.workout).then(exercises => {
         this.exercises = exercises;
       });
     }
@@ -36,6 +38,11 @@ export class EditWorkoutPage implements OnInit {
 
   cancelSearch() {
     this.exercises = [];
+  }
+
+  onAddExercise(exercise){
+    this.workout.push(exercise);
+    this.queryText = "";
   }
 
   ionViewDidLeave() {
