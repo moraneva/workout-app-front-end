@@ -7,10 +7,33 @@
 <ion-content>
     <ion-list>
 
-        <ion-item *ngFor="let workoutDay of workoutDays">
-            <ion-toggle [(ngModel)]="workoutDay.active"></ion-toggle>
-            <ion-label>{{workoutDay.day}}<div *ngIf="workoutDay.active">Exercises: {{workoutDay.workout.length}}</div></ion-label>
-            <button [disabled]="!workoutDay.active" ion-button item-left color="secondary" (click)="onEditWorkoutClicked(workoutDay)">Edit Workout</button>
+        <ion-item *ngFor="let workoutDay of workoutDays; let i = index;">
+            <ion-toggle [(ngModel)]="workoutDay.active" (ionChange)="onDayToggled($event,i)"></ion-toggle>
+            <ion-label>{{workoutDay.day}}
+                <div *ngIf="workoutDay.active">Exercises: {{workoutDay.workout.length}}</div>
+            </ion-label>
+            <button [disabled]="!workoutDay.active" ion-button item-left color="dark" (click)="onEditWorkoutClicked(workoutDay,i)">Edit Workout</button>
         </ion-item>
     </ion-list>
+    <ion-grid>
+        <ion-row>
+            <ion-col *ngFor="let day of workoutFormat; let i = index;" width-11>
+                <ion-label class="center-label">Day {{i+1}}</ion-label>
+                <button ion-button (click)="onWorkoutFormatButtonClicked(i)">
+                   {{day}}
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <div class="center-label">
+        <button ion-button color="dark" (click)="onWhatsThisClicked()">
+        What's This?
+        </button>
+    </div>
 </ion-content>
+<ion-footer>
+    <ion-toolbar color="light">
+        <button ion-button color="danger" (click)="discardChanges()">Discard</button>
+        <button ion-button color="success">Save</button>
+    </ion-toolbar>
+</ion-footer>
