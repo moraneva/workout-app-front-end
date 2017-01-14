@@ -10,6 +10,8 @@ import { ProgramIntroductionPage } from '../pages/program-introduction/program-i
 
 import { Storage } from '@ionic/storage';
 
+import './rxjs-operators';
+
 @Component({
   templateUrl: 'app.html'
 })

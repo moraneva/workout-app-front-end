@@ -1,6 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { HttpModule } from '@angular/http';
 
 /** App Pages **/
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
@@ -25,7 +26,8 @@ import { Storage } from '@ionic/storage';
     EditWorkoutPage
   ],/**/
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

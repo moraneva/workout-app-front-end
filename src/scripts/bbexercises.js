@@ -6,6 +6,7 @@ let data = [];
 let promiseArray = [];
 
 for (var i = 0; i < 1092; i = i + 15) {
+    var id = 1;
     promiseArray.push(new Promise((resolve, reject) => {
 
         let body = "params=muscleID=13,3,18,5,17,4,15,6,9,7,1,12,2,11,14,10,8;exerciseTypeID=2,6,4,7,1,3,5;equipmentID=9,14,2,10,5,6,4,15,1,8,11,3,7;mechanicTypeID=1,2,11&orderByField=exerciseName&orderByDirection=ASC&page=" + i;
@@ -29,11 +30,12 @@ for (var i = 0; i < 1092; i = i + 15) {
                 jsdom.env(json.htmlCode.replace('\n', ''), ["http://code.jquery.com/jquery.js"],
                     function (err, window) {
                         let exerciseNames = [];
+                        let exerciseUrl = []
                         let musclesTargeted = [];
                         let equipmentTypes = [];
                         window.$('.exerciseName h3 a').each(function () {
-                            console.log(this.text.substring(1, this.text.length - 1));
                             exerciseNames.push(this.text.substring(1, this.text.length - 1));
+                            exerciseUrl.push(this.href);
                         });
 
                         window.$('.exerciseName p span a').each(function () {
@@ -44,7 +46,8 @@ for (var i = 0; i < 1092; i = i + 15) {
                         });
 
                         exerciseNames.forEach((name, index) => {
-                            data.push({ name: exerciseNames[index], muscle: musclesTargeted[index], equipment: equipmentTypes[index] })
+                            data.push({ id: id, name: exerciseNames[index], muscle: musclesTargeted[index], equipment: equipmentTypes[index], moreInfoUrl: exerciseUrl[index], picture: '' });
+                            id++;
                         });
 
                         resolve();

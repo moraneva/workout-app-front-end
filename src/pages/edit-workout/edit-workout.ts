@@ -27,8 +27,10 @@ export class EditWorkoutPage implements OnInit {
 
   filterItems() {
     if (this.queryText.length) {
-      this._exerciseService.getExercises(this.queryText,this.workout).then(exercises => {
+      this._exerciseService.getExercises(this.queryText, this.workout).subscribe((exercises) => {
         this.exercises = exercises;
+      }, (error) => {
+        console.error(error);
       });
     }
     else {
@@ -40,7 +42,7 @@ export class EditWorkoutPage implements OnInit {
     this.exercises = [];
   }
 
-  onAddExercise(exercise){
+  onAddExercise(exercise) {
     this.workout.push(exercise);
     this.queryText = "";
   }
